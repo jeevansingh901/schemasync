@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+
+}
+
+group = 'com.schemasync'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.yaml:snakeyaml:2.2'
+    implementation 'org.xerial:sqlite-jdbc:3.45.1.0'
+    implementation 'org.postgresql:postgresql:42.7.1'
+    implementation 'org.slf4j:slf4j-simple:2.0.9' // or match your SLF4J version
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testImplementation 'com.h2database:h2:2.2.224'
+}
+
+test {
+    useJUnitPlatform()
+}
+shadowJar {
+    archiveFileName = 'schemasync-all.jar'
+}
+
+application {
+    mainClass = 'com.schemasync.Main'
+}
